@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gigfloww Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #fbfbfb;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left side with background */
+        .left-side {
+            display: none;
+            position: relative;
+            overflow: hidden;
+            background: url('https://c.animaapp.com/mbkmewufS8G498/img/frame-1171275439.png') 50% 50% / cover,
+                        linear-gradient(0deg, rgba(137, 42, 42, 1) 0%, rgba(137, 42, 42, 1) 100%);
+        }
+
+        .left-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(36, 40, 49, 0.4);
+        }
+
+        /* Right side with form */
+        .right-side {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 28rem;
+            position: relative;
+        }
+
+        /* Decorative circles */
+        .decorative-circles {
+            display: none;
+            position: absolute;
+            top: -2rem;
+            right: 0;
+            width: 16rem;
+            height: 16rem;
+            opacity: 0.1;
+        }
+
+        .circle-1 {
+            position: absolute;
+            inset: 3rem;
+            border-radius: 50%;
+            border: 2px solid #3b82f6;
+        }
+
+        .circle-2 {
+            position: absolute;
+            inset: 1.5rem;
+            border-radius: 50%;
+            border: 2px solid #3b82f6;
+            transform: rotate(12deg);
+        }
+
+        /* Logo section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            height: 3rem;
+            width: auto;
+        }
+
+        /* Welcome section */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.32px;
+            line-height: 1.5;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.125rem;
+            color: #393939;
+            letter-spacing: 0.20px;
+            line-height: 1.33;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            color: #374151;
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.40px;
+            line-height: 1.75;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 3.5rem;
+            padding: 0 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 0.5rem;
+            box-shadow: 0px 2px 4px rgba(196, 196, 196, 0.15);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .form-input.error {
+            border-color: #f87171;
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #9ca3af;
+            transition: color 0.2s ease;
+            padding: 0.25rem;
+        }
+
+        .password-toggle:hover {
+            color: #6b7280;
+        }
+
+        .password-toggle:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: 0.25rem;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Submit button */
+        .submit-section {
+            padding-top: 1rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            height: 4rem;
+            background: linear-gradient(105deg, rgba(39, 132, 184, 1) 0%, rgba(17, 59, 82, 1) 100%);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background: linear-gradient(105deg, rgba(30, 120, 170, 1) 0%, rgba(15, 50, 70, 1) 100%);
+        }
+
+        .submit-button:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid white;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Terms section */
+        .terms-section {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .terms-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .terms-link {
+            color: #2563eb;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .terms-link:hover {
+            color: #1d4ed8;
+        }
+
+        .terms-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 1px;
+            border-radius: 0.125rem;
+        }
+
+        /* Login section */
+        .login-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .login-text {
+            color: #6b7280;
+        }
+
+        .login-link {
+            color: #2563eb;
+            font-weight: 500;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .login-link:hover {
+            color: #1d4ed8;
+        }
+
+        .login-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 1px;
+            border-radius: 0.125rem;
+        }
+
+        /* Icons */
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        /* Responsive design */
+        @media (min-width: 640px) {
+            .right-side {
+                padding: 1.5rem;
+            }
+
+            .welcome-title {
+                font-size: 1.875rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .left-side {
+                display: block;
+                width: 40%;
+            }
+
+            .right-side {
+                width: 60%;
+                padding: 2rem;
+            }
+
+            .form-container {
+                max-width: 32rem;
+            }
+
+            .decorative-circles {
+                display: block;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .form-container {
+                max-width: 36rem;
+            }
+        }
+
+        /* Success message */
+        .success-message {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background-color: #10b981;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .success-message.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left side with background -->
+        <div class="left-side">
+            <div class="left-overlay"></div>
+        </div>
+
+        <!-- Right side with form -->
+        <div class="right-side">
+            <div class="form-container">
+                <!-- Decorative circles -->
+                <div class="decorative-circles">
+                    <div class="circle-1"></div>
+                    <div class="circle-2"></div>
+                </div>
+
+                <!-- Logo -->
+                <div class="logo-section">
+                    <img src="https://c.animaapp.com/mbkmewufS8G498/img/image-76.png" alt="Gigfloww Logo" class="logo">
+                </div>
+
+                <!-- Welcome text -->
+                <div class="welcome-section">
+                    <h1 class="welcome-title">Welcome to Gigfloww</h1>
+                    <p class="welcome-subtitle">Seamless HR operations start now! Sign up</p>
+                </div>
+
+                <!-- Form -->
+                <div class="form-content">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                id="name"
+                                class="form-input"
+                                placeholder="Your Full Name"
+                                autocomplete="name"
+                            >
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label class="form-label">Work Email</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-input"
+                                placeholder="Your Work Email Address"
+                                autocomplete="email"
+                            >
+                            <div class="error-message" id="email-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-input"
+                                placeholder="Your Password"
+                                autocomplete="new-password"
+                            >
+                            <button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
+                                <svg class="icon" id="eye-closed" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
+                                </svg>
+                                <svg class="icon" id="eye-open" viewBox="0 0 24 24" stroke="currentColor" fill="none" style="display: none;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                            <div class="error-message" id="password-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="submit-section">
+                        <button type="button" class="submit-button" id="submit-btn">
+                            <span id="button-text">Sign up for free</span>
+                            <div class="loading-spinner" id="loading-spinner" style="display: none;"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="terms-section">
+                    <p class="terms-text">
+                        By clicking on Sign up, you agree to our
+                        <button type="button" class="terms-link" id="terms-link">Terms and Conditions</button>
+                    </p>
+                </div>
+
+                <!-- Login link -->
+                <div class="login-section">
+                    <p class="login-text">
+                        Already on Gigfloww?
+                        <button type="button" class="login-link" id="login-link">Log in</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success message -->
+    <div class="success-message" id="success-message">
+        Account created successfully! Redirecting to dashboard...
+    </div>
+
+    <script>
+        // Form state
+        let formData = {
+            name: '',
+            email: '',
+            password: ''
+        };
+
+        let showPassword = false;
+        let isSubmitting = false;
+
+        // Get DOM elements
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('password-toggle');
+        const eyeClosed = document.getElementById('eye-closed');
+        const eyeOpen = document.getElementById('eye-open');
+        const submitBtn = document.getElementById('submit-btn');
+        const buttonText = document.getElementById('button-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const successMessage = document.getElementById('success-message');
+        const termsLink = document.getElementById('terms-link');
+        const loginLink = document.getElementById('login-link');
+
+        // Error elements
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+
+        // Validation functions
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validateForm() {
+            const errors = {};
+            
+            if (!formData.name.trim()) {
+                errors.name = 'Name is required';
+            }
+            
+            if (!formData.email.trim()) {
+                errors.email = 'Email is required';
+            } else if (!validateEmail(formData.email)) {
+                errors.email = 'Please enter a valid email address';
+            }
+            
+            if (!formData.password) {
+                errors.password = 'Password is required';
+            } else if (formData.password.length < 6) {
+                errors.password = 'Password must be at least 6 characters';
+            }
+            
+            return errors;
+        }
+
+        function showError(field, message) {
+            const errorElement = document.getElementById(`${field}-error`);
+            const inputElement = document.getElementById(field);
+            
+            errorElement.textContent = message;
+            inputElement.classList.add('error');
+        }
+
+        function clearError(field) {
+            const errorElement = document.getElementById(`${field}-error`);
+            const inputElement = document.getElementById(field);
+            
+            errorElement.textContent = '';
+            inputElement.classList.remove('error');
+        }
+
+        function clearAllErrors() {
+            ['name', 'email', 'password'].forEach(field => {
+                clearError(field);
+            });
+        }
+
+        function showSuccessMessage() {
+            successMessage.classList.add('show');
+        }
+
+        function redirectToDashboard() {
+            // Redirect to dashboard.html after successful registration
+            window.location.href = 'daashboard.html';
+        }
+
+        // Event handlers
+        function handleInputChange(field, value) {
+            formData[field] = value;
+            
+            // Clear error when user starts typing
+            if (document.getElementById(`${field}-error`).textContent) {
+                clearError(field);
+            }
+        }
+
+        function togglePasswordVisibility() {
+            showPassword = !showPassword;
+            
+            if (showPassword) {
+                passwordInput.type = 'text';
+                eyeClosed.style.display = 'none';
+                eyeOpen.style.display = 'block';
+            } else {
+                passwordInput.type = 'password';
+                eyeClosed.style.display = 'block';
+                eyeOpen.style.display = 'none';
+            }
+        }
+
+        async function handleSubmit() {
+            if (isSubmitting) return;
+            
+            const errors = validateForm();
+            
+            // Clear previous errors
+            clearAllErrors();
+            
+            // Show errors if any
+            if (Object.keys(errors).length > 0) {
+                Object.keys(errors).forEach(field => {
+                    showError(field, errors[field]);
+                });
+                return;
+            }
+            
+            // Start submitting
+            isSubmitting = true;
+            submitBtn.disabled = true;
+            buttonText.textContent = 'Creating Account...';
+            loadingSpinner.style.display = 'block';
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Success - show message and redirect
+                showSuccessMessage();
+                
+                // Store user data in memory (for this session)
+                const userData = {
+                    name: formData.name,
+                    email: formData.email,
+                    registrationDate: new Date().toISOString()
+                };
+                
+                // In a real app, you'd send this to your backend
+                console.log('User registered:', userData);
+                
+                // Redirect to dashboard after a short delay
+                setTimeout(() => {
+                    redirectToDashboard();
+                }, 1500);
+                
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+                
+                // Reset submit button on error
+                isSubmitting = false;
+                submitBtn.disabled = false;
+                buttonText.textContent = 'Sign up for free';
+                loadingSpinner.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        nameInput.addEventListener('input', (e) => {
+            handleInputChange('name', e.target.value);
+        });
+
+        emailInput.addEventListener('input', (e) => {
+            handleInputChange('email', e.target.value);
+        });
+
+        passwordInput.addEventListener('input', (e) => {
+            handleInputChange('password', e.target.value);
+        });
+
+        passwordToggle.addEventListener('click', togglePasswordVisibility);
+
+        submitBtn.addEventListener('click', handleSubmit);
+
+        termsLink.addEventListener('click', () => {
+            alert('Terms and Conditions clicked');
+        });
+
+        loginLink.addEventListener('click', () => {
+            alert('Login clicked');
+        });
+
+        // Handle Enter key submission
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !isSubmitting) {
+                handleSubmit();
+            }
+        });
+
+        // Initialize form data
+        formData.name = nameInput.value;
+        formData.email = emailInput.value;
+        formData.password = passwordInput.value;
+    </script>
+</body>
+</html>

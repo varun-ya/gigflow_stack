@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+.dashboard{background:#fafafa;display:flex;justify-content:center;width:100%;font-family:"Gilroy-Regular",Helvetica,Arial,sans-serif}
+.container{background:#fafafa;width:1440px;height:1761px;position:relative}
+.intro{position:absolute;top:200px;left:40px;width:394px}
+.intro h1{color:#242831;font-size:32px;font-weight:500;margin-bottom:20px}
+.intro p{color:#333;font-size:18px;line-height:24.2px}
+.section-title{position:absolute;top:301px;left:40px;color:#202223;font-size:36px;font-weight:600;text-decoration:underline;line-height:48.4px}
+.form{position:absolute;top:382px;left:40px;width:925px}
+.field{margin-bottom:24px}
+.field label{display:block;color:#202223;font-size:24px;font-weight:500;line-height:32.3px;margin-bottom:16px}
+.input-box{width:100%;height:55px;border:1px solid #3a3a3a33;border-radius:8px;position:relative;transition:all .3s ease}
+.input-box:hover{border-color:#2784b8;box-shadow:0 2px 8px rgba(39,132,184,.1)}
+.input-box:focus-within{border-color:#2784b8;box-shadow:0 0 0 3px rgba(39,132,184,.1)}
+.input-box input{width:100%;height:100%;border:none;background:transparent;padding:17px 20px;color:#333;font-size:16px;outline:none}
+.input-box input::placeholder{color:#7b7b7b}
+.input-box.textarea{height:163px}
+.dropdown::after{content:"";position:absolute;right:20px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid #333;transition:transform .3s ease}
+.dropdown:hover::after{transform:translateY(-50%) rotate(180deg)}
+.opening-label{color:#202223;font-weight:500}
+.opening-label .note{color:#7b7b7b;font-weight:400}
+.manage-panel{position:absolute;top:302px;right:40px;width:403px;height:456px;background:#fff;border:1px solid #33333333;border-radius:12px;box-shadow:0 2px 4px #c4c4c426;transition:box-shadow .3s ease}
+.manage-panel:hover{box-shadow:0 8px 24px rgba(196,196,196,.2)}
+.manage-header{padding:19px 20px;display:flex;justify-content:space-between;align-items:center}
+.manage-header h3{color:#292d32;font-size:20px;font-weight:500}
+.see-all{background:linear-gradient(105deg,#2784b8 0%,#113b52 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:16px;cursor:pointer;transition:opacity .3s ease}
+.see-all:hover{opacity:.8}
+.job-card{margin:16px;border:.5px solid #333333cc;border-radius:8px;height:177px;padding:16px;position:relative;transition:all .3s ease;cursor:pointer}
+.job-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1);border-color:#2784b8}
+.job-header{display:flex;gap:16px;margin-bottom:12px}
+.company-logo{width:60px;height:60px;background:#04055f;border-radius:3.47px;display:flex;align-items:center;justify-content:center;transition:transform .3s ease}
+.job-card:hover .company-logo{transform:scale(1.05)}
+.company-logo img{width:30px;height:30px}
+.job-info h4{color:#333;font-size:16px;font-weight:600;margin-bottom:8px}
+.job-info .company{color:#333;font-size:14px;margin-bottom:8px}
+.job-info .location{color:#333;font-size:12px;font-weight:500}
+.job-status{position:absolute;top:96px;left:92px;color:#333;font-size:12px}
+.job-stats{position:absolute;bottom:24px;left:84px;display:flex;gap:108px}
+.stat{text-align:center}
+.stat .number{color:#333;font-size:12px;font-weight:600;display:block}
+.stat .label{color:#333;font-size:12px;font-weight:600}
+.divider{position:absolute;bottom:57px;left:16px;right:16px;height:1px;background:#ddd}
+.ai-panel{position:absolute;top:782px;right:40px;width:403px;height:382px;background:#fff;border:1px solid #33333333;border-radius:8px;box-shadow:0 2px 4px #c4c4c426;padding:20px;transition:all .3s ease}
+.ai-panel:hover{box-shadow:0 8px 24px rgba(196,196,196,.2);transform:translateY(-2px)}
+.ai-illustration{width:318px;height:145px;margin-bottom:20px;transition:transform .3s ease}
+.ai-panel:hover .ai-illustration{transform:scale(1.02)}
+.ai-content h3{color:#242831;font-size:20px;font-weight:600;margin-bottom:16px}
+.ai-content p{color:#393939;font-size:14px;font-weight:300;line-height:18.8px;margin-bottom:32px}
+.ai-button{width:100%;height:48px;background:linear-gradient(105deg,#2784b8 0%,#113b52 100%);border:1px solid #00000026;border-radius:8px;color:#fff;font-size:20px;font-weight:500;cursor:pointer;box-shadow:0 2px 4px #c4c4c426;transition:all .3s ease;position:relative;overflow:hidden}
+.ai-button::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s ease}
+.ai-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(39,132,184,.3);background:linear-gradient(105deg,#3094c8 0%,#214b62 100%)}
+.ai-button:hover::before{left:100%}
+.ai-button:active{transform:translateY(0);box-shadow:0 4px 8px rgba(39,132,184,.2)}
+.header{position:fixed;top:0;left:0;width:100%;height:180px;background:#fbfbfb;z-index:1000}
+.header-content{margin:40px;height:100px;background:linear-gradient(105deg,#2784b8 0%,#113b52 100%);border:1px solid #00000033;border-radius:50px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:box-shadow .3s ease}
+.header-content:hover{box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.logo{width:255px;height:50px}
+.nav{display:flex;align-items:center}
+.nav-item{color:#fff;font-size:24px;padding:8px 16px;text-decoration:none;border-radius:50px;transition:all .3s ease;cursor:pointer}
+.nav-item:hover{background:rgba(255,255,255,.1)}
+.nav-item.active{background:#fcfcfc;color:#31aef3;font-weight:500}
+.header-right{display:flex;align-items:center;gap:20px}
+.icon-btn{width:40px;height:40px;background:#fff;border-radius:50px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:all .3s ease}
+.icon-btn:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.notification-badge{position:absolute;top:-8px;right:-8px;width:16px;height:16px;background:#b20812;border-radius:8px;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+.profile{width:50px;height:50px;border-radius:50px;background:url(https://c.animaapp.com/mbjvehw4QZHnIT/img/frame-2610930.png);background-size:cover;cursor:pointer;transition:all .3s ease;border:3px solid transparent}
+.profile:hover{transform:scale(1.05);border-color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.divider-vertical{width:1px;height:100px;background:#ddd}
+.submit-section{position:absolute;top:1200px;left:40px;display:flex;gap:20px;align-items:center}
+.submit-btn{padding:16px 32px;background:linear-gradient(105deg,#2784b8 0%,#113b52 100%);border:1px solid #00000026;border-radius:8px;color:#fff;font-size:18px;font-weight:500;cursor:pointer;box-shadow:0 2px 4px #c4c4c426;transition:all .3s ease;position:relative;overflow:hidden}
+.submit-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s ease}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(39,132,184,.3);background:linear-gradient(105deg,#3094c8 0%,#214b62 100%)}
+.submit-btn:hover::before{left:100%}
+.submit-btn:active{transform:translateY(0);box-shadow:0 4px 8px rgba(39,132,184,.2)}
+.draft-btn{padding:16px 32px;background:transparent;border:2px solid #2784b8;border-radius:8px;color:#2784b8;font-size:18px;font-weight:500;cursor:pointer;transition:all .3s ease}
+.draft-btn:hover{background:#2784b8;color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(39,132,184,.2)}
+.loading{opacity:.7;pointer-events:none}
+.loading::after{content:'';position:absolute;top:50%;left:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border:2px solid #fff;border-top:2px solid transparent;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.field.error .input-box{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,.1)}
+.field.success .input-box{border-color:#27ae60;box-shadow:0 0 0 3px rgba(39,174,96,.1)}
+.error-message{color:#e74c3c;font-size:14px;margin-top:8px;display:none}
+.field.error .error-message{display:block}
+</style>
+</head>
+<body>
+<div class="dashboard">
+<div class="container">
+<div class="header">
+<div class="header-content">
+<img class="logo" src="https://c.animaapp.com/mbjvehw4QZHnIT/img/image-74.png">
+<nav class="nav">
+<div class="nav-item" onclick="navigateToSection('dashboard')">Dashboard</div>
+<div class="nav-item" onclick="window.location.href='./people.html'">People</div>
+<div class="nav-item active" onclick="window.location.href='./Hiring.html'">Hiring</div>
+<div class="nav-item" onclick="window.location.href='./Salary.html'">Salary</div>
+<div class="nav-item" onclick="navigateToSection('reviews')">Reviews</div>
+</nav>
+<div class="header-right">
+<div class="icon-btn" onclick="toggleSettings()">
+<img src="https://c.animaapp.com/mbjvehw4QZHnIT/img/solar-settings-bold.svg" width="24" height="24">
+</div>
+<div class="icon-btn" onclick="toggleNotifications()">
+<img src="https://c.animaapp.com/mbjvehw4QZHnIT/img/mi-notification.svg" width="24" height="24">
+<div class="notification-badge">4</div>
+</div>
+<div class="divider-vertical"></div>
+<div class="profile" onclick="toggleProfile()"></div>
+</div>
+</div>
+</div>
+<div class="intro">
+<h1>Job Posting</h1>
+<p>Post Job for free. Add details for your job post</p>
+</div>
+<div class="section-title">Fill in Job Details</div>
+<form class="form" id="jobForm" onsubmit="handleSubmit(event)">
+<div class="field">
+<label>Role</label>
+<div class="input-box dropdown">
+<input type="text" name="role" placeholder="e.g UI/UX Designer" required>
+</div>
+<div class="error-message">Please enter a role</div>
+</div>
+<div class="field">
+<label>Skill(s) Required</label>
+<div class="input-box dropdown">
+<input type="text" name="skills" placeholder="Enter required skill(s)" required>
+</div>
+<div class="error-message">Please enter required skills</div>
+</div>
+<div class="field">
+<label>Years of Experience/Experience Level</label>
+<div class="input-box dropdown">
+<input type="text" name="experience" placeholder="e.g 0-2 years" required>
+</div>
+<div class="error-message">Please enter experience level</div>
+</div>
+<div class="field">
+<label>Employment Type</label>
+<div class="input-box dropdown">
+<input type="text" name="employment" placeholder="e.g Full time" required>
+</div>
+<div class="error-message">Please select employment type</div>
+</div>
+<div class="field">
+<label>Workplace Type</label>
+<div class="input-box dropdown">
+<input type="text" name="workplace" placeholder="e.g Hybrid" required>
+</div>
+<div class="error-message">Please select workplace type</div>
+</div>
+<div class="field">
+<label>Stipend</label>
+<div class="input-box dropdown">
+<input type="text" name="stipend" placeholder="Enter the payment per month" required>
+</div>
+<div class="error-message">Please enter stipend amount</div>
+</div>
+<div class="field">
+<label class="opening-label">No of Opening <span class="note">(if it is more than 1 one)</span></label>
+<div class="input-box dropdown">
+<input type="number" name="openings" placeholder="e.g 2" min="1" required>
+</div>
+<div class="error-message">Please enter number of openings</div>
+</div>
+<div class="field">
+<label>Job Description</label>
+<div class="input-box textarea">
+<textarea name="description" placeholder="Enter job description..." style="width:100%;height:100%;border:none;background:transparent;padding:17px 20px;color:#333;font-size:16px;outline:none;resize:none;font-family:inherit" required></textarea>
+</div>
+<div class="error-message">Please enter job description</div>
+</div>
+<div class="field">
+<label>Relevant Link(s)</label>
+<div class="input-box">
+<input type="url" name="links" placeholder="Enter link">
+</div>
+</div>
+<div class="submit-section">
+<button type="submit" class="submit-btn" id="submitBtn">Post Job</button>
+<button type="button" class="draft-btn" onclick="saveDraft()">Save as Draft</button>
+</div>
+</form>
+<div class="manage-panel">
+<div class="manage-header">
+<h3>Manage Posting</h3>
+<div class="see-all" onclick="showAllJobs()">See all</div>
+</div>
+<div class="job-card" onclick="viewJob(1)">
+<div class="job-header">
+<div class="company-logo">
+<img src="https://c.animaapp.com/mbjvehw4QZHnIT/img/image-17-1.png">
+</div>
+<div class="job-info">
+<h4>UI Designer Intern (Remote)</h4>
+<div class="company">Article studio</div>
+<div class="location">Banglalore, India</div>
+</div>
+</div>
+<div class="job-status">Under applying (posted 12/02/24)</div>
+<div class="divider"></div>
+<div class="job-stats">
+<div class="stat">
+<span class="number">24</span>
+<span class="label">Views</span>
+</div>
+<div class="stat">
+<span class="number">106</span>
+<span class="label">Applicants</span>
+</div>
+</div>
+</div>
+<div class="job-card" onclick="viewJob(2)">
+<div class="job-header">
+<div class="company-logo">
+<img src="https://c.animaapp.com/mbjvehw4QZHnIT/img/image-17-1.png">
+</div>
+<div class="job-info">
+<h4>UI Designer Intern (Remote)</h4>
+<div class="company">Article studio</div>
+<div class="location">Banglalore, India</div>
+</div>
+</div>
+<div class="job-status">Under applying (posted 12/02/24)</div>
+<div class="divider"></div>
+<div class="job-stats">
+<div class="stat">
+<span class="number">24</span>
+<span class="label">Views</span>
+</div>
+<div class="stat">
+<span class="number">106</span>
+<span class="label">Applicants</span>
+</div>
+</div>
+</div>
+</div>
+<div class="ai-panel">
+<img class="ai-illustration" src="https://c.animaapp.com/mbjvehw4QZHnIT/img/undraw-artificial-intelligence-re-enpp-1.svg">
+<div class="ai-content">
+<h3>Use AI to write</h3>
+<p>Write perfectly and flawless with Al. If you want help with job description and other fields, AI will suggest for you.</p>
+<button class="ai-button" onclick="useAI()">Write with AI</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+function validateField(f){const i=f.querySelector('input,textarea'),v=i.checkValidity()&&i.value.trim()!=='';f.classList.remove('error','success');i.value.trim()!==''&&f.classList.add(v?'success':'error');return v}
+document.querySelectorAll('input,textarea').forEach(i=>{i.addEventListener('blur',function(){validateField(this.closest('.field'))});i.addEventListener('input',function(){this.closest('.field').classList.contains('error')&&validateField(this.closest('.field'))})});
+function handleSubmit(e){e.preventDefault();const f=e.target,fs=f.querySelectorAll('.field');let v=true;fs.forEach(field=>{!validateField(field)&&(v=false)});if(v){const s=document.getElementById('submitBtn');s.classList.add('loading');s.textContent='Posting...';setTimeout(()=>{s.classList.remove('loading');s.textContent='Posted Successfully!';s.style.background='linear-gradient(105deg,#27ae60 0%,#1e8e3e 100%)';setTimeout(()=>{s.textContent='Post Job';s.style.background='linear-gradient(105deg,#2784b8 0%,#113b52 100%)';f.reset();fs.forEach(field=>field.classList.remove('error','success'))},2000)},2000)}}
+function saveDraft(){const d=new FormData(document.getElementById('jobForm'));console.log('Draft saved:',Object.fromEntries(d));const b=event.target,t=b.textContent;b.textContent='Draft Saved!';b.style.background='#27ae60';b.style.color='#fff';setTimeout(()=>{b.textContent=t;b.style.background='transparent';b.style.color='#2784b8'},1500)}
+function useAI(){const b=event.target;b.classList.add('loading');b.textContent='Generating...';setTimeout(()=>{b.classList.remove('loading');b.textContent='AI Content Generated!';document.querySelector('textarea[name="description"]').value='We are looking for a creative and detail-oriented UI/UX Designer to join our growing team. The ideal candidate will have experience in user research, wireframing, prototyping, and visual design.';setTimeout(()=>b.textContent='Write with AI',2000)},2000)}
+function viewJob(id){console.log('Viewing job:',id)}
+function showAllJobs(){console.log('Showing all jobs')}
+function toggleSettings(){console.log('Settings toggled')}
+function toggleNotifications(){console.log('Notifications toggled')}
+function toggleProfile(){console.log('Profile menu toggled')}
+
+// New navigation function to handle section switching
+function navigateToSection(section) {
+    // Remove active class from all nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Add active class to clicked nav item
+    event.target.classList.add('active');
+    
+    // Handle different sections
+    switch(section) {
+        case 'dashboard':
+            console.log('Navigating to Dashboard');
+            // You can add logic here to show/hide different content sections
+            break;
+        case 'people':
+            console.log('Navigating to People');
+            break;
+        case 'hiring':
+            console.log('Navigating to Hiring');
+            break;
+        case 'salary':
+            console.log('Navigating to Salary');
+            break;
+        case 'reviews':
+            console.log('Navigating to Reviews');
+            break;
+        default:
+            console.log('Unknown section:', section);
+    }
+}
+
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.input-box input,.input-box textarea').forEach(i=>{i.addEventListener('focus',function(){this.closest('.input-box').style.transform='scale(1.02)'});i.addEventListener('blur',function(){this.closest('.input-box').style.transform='scale(1)'})});const p=['Senior Frontend Developer','Mobile App Developer','Full Stack Engineer','DevOps Engineer','Product Designer'];let c=0;const r=document.querySelector('input[name="role"]');function changePlaceholder(){r&&!r.value&&(r.placeholder=`e.g ${p[c]}`,c=(c+1)%p.length)}setInterval(changePlaceholder,3000);function createParticle(x,y){const p=document.createElement('div');p.style.cssText=`position:fixed;width:4px;height:4px;background:#2784b8;border-radius:50%;pointer-events:none;z-index:9999;left:${x}px;top:${y}px;animation:particle 1s ease-out forwards`;document.body.appendChild(p);setTimeout(()=>p.remove(),1000)}const s=document.createElement('style');s.textContent=`@keyframes particle{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(${Math.random()*200-100}px,${Math.random()*200-100}px) scale(0);opacity:0}}`;document.head.appendChild(s);document.querySelector('.ai-button').addEventListener('click',function(e){const rt=this.getBoundingClientRect();for(let i=0;i<10;i++)setTimeout(()=>createParticle(rt.left+Math.random()*rt.width,rt.top+Math.random()*rt.height),i*50)});let t;document.querySelectorAll('input,textarea').forEach(i=>{i.addEventListener('input',function(){clearTimeout(t);t=setTimeout(()=>{const d=new FormData(document.getElementById('jobForm'));console.log('Auto-saved:',Object.fromEntries(d));const ind=document.createElement('div');ind.textContent='Auto-saved';ind.style.cssText='position:fixed;top:20px;right:20px;background:#27ae60;color:white;padding:8px 16px;border-radius:4px;font-size:14px;z-index:10000;opacity:0;transition:opacity .3s ease';document.body.appendChild(ind);setTimeout(()=>ind.style.opacity='1',10);setTimeout(()=>{ind.style.opacity='0';setTimeout(()=>ind.remove(),300)},2000)},2000)})});document.addEventListener('keydown',function(e){if(e.ctrlKey||e.metaKey)switch(e.key){case 's':e.preventDefault();saveDraft();break;case 'Enter':e.shiftKey&&(e.preventDefault(),document.getElementById('submitBtn').click())}});document.getElementById('submitBtn').title='Post Job (Ctrl/Cmd + Shift + Enter)';document.querySelector('.draft-btn').title='Save Draft (Ctrl/Cmd + S)';document.querySelectorAll('.dropdown').forEach(d=>d.addEventListener('click',function(){this.classList.toggle('active')}));const pb=document.createElement('div');pb.style.cssText='position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(105deg,#2784b8 0%,#113b52 100%);z-index:10001;transition:width .3s ease';document.body.appendChild(pb);function updateProgress(){const f=document.getElementById('jobForm'),is=f.querySelectorAll('input[required],textarea[required]'),fs=Array.from(is).filter(i=>i.value.trim()!==''),pr=(fs.length/is.length)*100;pb.style.width=pr+'%'}document.querySelectorAll('input,textarea').forEach(i=>i.addEventListener('input',updateProgress));updateProgress();const o={threshold:.1,rootMargin:'0px 0px -50px 0px'},ob=new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting&&(e.target.style.opacity='1',e.target.style.transform='translateY(0)')}),o);document.querySelectorAll('.field,.manage-panel,.ai-panel').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .6s ease,transform .6s ease';ob.observe(el)})});
+</script>
+</body>
+</html>

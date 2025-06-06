@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Gilroy-Regular", Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            overflow-x: hidden;
+        }
+
+        .GIGFLOWW-dashboard {
+            background-color: #fafafa;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .GIGFLOWW-dashboard .div {
+            background-color: #fafafa;
+            width: 100%;
+            max-width: 1440px;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .text-wrapper {
+            position: absolute;
+            top: 291px;
+            left: 40px;
+            font-family: "Gilroy-SemiBold", Helvetica;
+            font-weight: 600;
+            color: #292d32;
+            font-size: 40px;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .frame {
+            display: flex;
+            width: calc(100% - 80px);
+            max-width: 1360px;
+            align-items: center;
+            gap: 8px;
+            padding: 20px;
+            position: absolute;
+            top: 180px;
+            left: 40px;
+            background-color: #fcfcfc;
+            border-radius: 16px;
+            border: 1px solid #00000026;
+            box-shadow: 0px 2px 4px #0000001a;
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .frame:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .mdi-light-flash-wrapper {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background-color: #1163c1;
+            border-radius: 50px;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mdi-light-flash {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            top: 8px;
+            left: 6px;
+        }
+
+        .optimize-your {
+            position: relative;
+            width: fit-content;
+            font-family: "Gilroy-Medium", Helvetica;
+            font-weight: 400;
+            color: #292d32;
+            font-size: 20px;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .span {
+            font-weight: 500;
+        }
+
+        .frame-wrapper {
+            position: absolute;
+            width: 245px;
+            height: 60px;
+            top: 292px;
+            right: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #0000001a;
+            box-shadow: 0px 2px 4px #c4c4c426;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        .frame-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .frame-2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            top: 18px;
+            left: 16px;
+        }
+
+        .vuesax-linear-arrow {
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .solar-calendar {
+            position: relative;
+            height: 24px;
+        }
+
+        .group {
+            position: absolute;
+            width: 22px;
+            height: 21px;
+            top: 2px;
+            left: 1px;
+        }
+
+        .text-wrapper-2 {
+            position: relative;
+            width: fit-content;
+            margin-top: -0.50px;
+            font-family: "Gilroy-Regular", Helvetica;
+            font-weight: 400;
+            color: #393939;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .frame-3 {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: absolute;
+            top: 380px;
+            left: 40px;
+            flex-wrap: wrap;
+            width: calc(100% - 400px);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .dashboard-card {
+            position: relative;
+            width: 324px;
+            height: 176px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0px 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .dashboard-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .group-2 {
+            position: absolute;
+            width: 340px;
+            height: 613px;
+            top: 380px;
+            right: 40px;
+            animation: fadeInRight 1s ease-out 0.4s both;
+        }
+
+        .frame-6 {
+            position: absolute;
+            width: 348px;
+            height: 621px;
+            top: -2px;
+            left: -4px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .frame-6:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .sales-analytics {
+            position: absolute;
+            width: calc(100% - 400px);
+            max-width: 996px;
+            height: 429px;
+            top: 570px;
+            left: 36px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .sales-analytics:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .overlap {
+            position: absolute;
+            width: calc(100% - 72px);
+            max-width: 1368px;
+            height: 343px;
+            top: 1015px;
+            left: 36px;
+            background-image: url(https://c.animaapp.com/mbjppe18jlF2N4/img/sales-analytics-1.png);
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .frame-7 {
+            position: relative;
+            width: 125px;
+            height: 40px;
+            top: 22px;
+            right: 40px;
+            float: right;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #00000026;
+            box-shadow: 0px 2px 4px #c4c4c426;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .frame-7:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+        }
+
+        .text-wrapper-3 {
+            position: absolute;
+            top: 7px;
+            left: 66px;
+            font-family: "Gilroy-Regular", Helvetica;
+            font-weight: 400;
+            color: #393939;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        .mage-filter {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 7px;
+            left: 18px;
+        }
+
+        .HEADER-SEC-wrapper {
+            position: fixed;
+            width: 100%;
+            height: 180px;
+            top: 0;
+            left: 0;
+            background-color: #fbfbfb;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .HEADER-SEC {
+            position: relative;
+            width: calc(100% - 80px);
+            max-width: 1360px;
+            height: 100px;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+            background: linear-gradient(180deg, rgba(156, 188, 248, 1) 30%, rgba(255, 255, 255, 1) 66%);
+        }
+
+        .image {
+            position: absolute;
+            width: 255px;
+            height: 50px;
+            top: 25px;
+            left: 20px;
+        }
+
+        .frame-8 {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 10px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            position: relative;
+            flex: 0 0 auto;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-link .text-wrapper-8 {
+            position: relative;
+            width: fit-content;
+            margin-top: -1.00px;
+            font-family: "Gilroy-Regular", Helvetica;
+            font-weight: 400;
+            color: #ffffff;
+            font-size: 24px;
+            letter-spacing: 0;
+            line-height: normal;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link.active {
+            background-color: #fcfcfc;
+            transform: scale(1.05);
+        }
+
+        .nav-link.active .text-wrapper-8 {
+            color: #31aef3;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .nav-link.active:hover {
+            background-color: #fcfcfc;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .frame-9 {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 25px;
+            right: 20px;
+            border-radius: 50px;
+            background-image: url(https://c.animaapp.com/mbjppe18jlF2N4/img/frame-2610930.png);
+            background-size: cover;
+            background-position: 50% 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .frame-9:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(49, 174, 243, 0.3);
+        }
+
+        .overlap-group {
+            position: absolute;
+            width: 101px;
+            height: 43px;
+            top: 27px;
+            right: 80px;
+        }
+
+        .frame-10 {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 20px;
+            position: absolute;
+            top: 3px;
+            left: 0;
+        }
+
+        .frame-11 {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border-radius: 50px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .frame-11:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        .img-2 {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 8px;
+            left: 8px;
+        }
+
+        .frame-12 {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            right: 0;
+            background-color: #b20812;
+            border-radius: 8px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        .text-wrapper-5 {
+            position: absolute;
+            height: 8px;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: "Montserrat", Helvetica;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0.48px;
+            line-height: 14.4px;
+            white-space: nowrap;
+        }
+
+        .line {
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            top: 0;
+            right: 150px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .frame-3 {
+                width: calc(100% - 80px);
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .group-2 {
+                position: static;
+                width: 100%;
+                margin: 20px auto;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .sales-analytics {
+                width: calc(100% - 80px);
+                position: relative;
+                top: 50px;
+                margin: 20px auto;
+            }
+            
+            .overlap {
+                position: relative;
+                top: 100px;
+                margin: 20px auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .frame-8 {
+                flex-wrap: wrap;
+                gap: 5px;
+                justify-content: center;
+            }
+            
+            .nav-link .text-wrapper-8 {
+                font-size: 18px;
+            }
+            
+            .HEADER-SEC {
+                height: auto;
+                padding: 20px;
+                border-radius: 25px;
+            }
+            
+            .text-wrapper {
+                font-size: 28px;
+                width: calc(100% - 80px);
+                text-align: center;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .frame-wrapper {
+                right: 50%;
+                transform: translateX(50%);
+                top: 340px;
+            }
+            
+            .dashboard-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .frame {
+                width: calc(100% - 40px);
+                left: 20px;
+                padding: 15px;
+            }
+            
+            .text-wrapper {
+                font-size: 24px;
+                left: 20px;
+                width: calc(100% - 40px);
+                transform: none;
+                text-align: left;
+            }
+            
+            .frame-wrapper {
+                right: 20px;
+                transform: none;
+                width: calc(100% - 40px);
+                max-width: 245px;
+            }
+            
+            .nav-link .text-wrapper-8 {
+                font-size: 16px;
+            }
+            
+            .HEADER-SEC {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="GIGFLOWW-dashboard">
+        <div class="div">
+            <div class="text-wrapper">Welcome Back, Nuraj group</div>
+            <div class="frame">
+                <div class="mdi-light-flash-wrapper">
+                    <img class="mdi-light-flash" src="https://c.animaapp.com/mbjppe18jlF2N4/img/mdi-light-flash.svg" />
+                </div>
+                <p class="optimize-your">
+                    <span class="span">Optimize your experience on Gigfloww- track your job post, manage teams and streamline </span>
+                    <span class="span">HR OPERATIONS EFFORTLESSLY TODAY!</span>
+                </p>
+            </div>
+            <div class="frame-wrapper">
+                <div class="frame-2">
+                    <div class="vuesax-linear-arrow">
+                        <div class="solar-calendar">
+                            <img class="group" src="https://c.animaapp.com/mbjppe18jlF2N4/img/group.png" />
+                        </div>
+                    </div>
+                    <div class="text-wrapper-2">Wed 23, May 2025</div>
+                </div>
+            </div>
+            <div class="frame-3">
+                <div class="dashboard-card">
+                    <img src="https://c.animaapp.com/mbjppe18jlF2N4/img/frame-1171275063.png" />
+                </div>
+                <div class="dashboard-card">
+                    <img src="https://c.animaapp.com/mbjppe18jlF2N4/img/frame-1171275400.png" />
+                </div>
+                <div class="dashboard-card">
+                    <img src="https://c.animaapp.com/mbjppe18jlF2N4/img/frame-1171275401.png" />
+                </div>
+            </div>
+            <div class="group-2">
+                <img class="frame-6" src="https://c.animaapp.com/mbjppe18jlF2N4/img/frame-1171275401-1.png" />
+            </div>
+            <img class="sales-analytics" src="https://c.animaapp.com/mbjppe18jlF2N4/img/sales-analytics.png" />
+            <div class="overlap">
+                <div class="frame-7">
+                    <div class="text-wrapper-3">Filter</div>
+                    <img class="mage-filter" src="https://c.animaapp.com/mbjppe18jlF2N4/img/mage-filter.svg" />
+                </div>
+            </div>
+            <div class="HEADER-SEC-wrapper">
+                <div class="HEADER-SEC">
+                    <img class="image" src="https://c.animaapp.com/mbjppe18jlF2N4/img/image-74.png" />
+                    <div class="frame-8">
+                        <a href="./dashboard.html" class="nav-link active" data-page="dashboard">
+                            <div class="text-wrapper-8">Dashboard</div>
+                        </a>
+                        <a href="./people.html" class="nav-link" data-page="people">
+                            <div class="text-wrapper-8">People</div>
+                        </a>
+                        <a href="./Hiring.html" class="nav-link" data-page="hiring">
+                            <div class="text-wrapper-8">Hiring</div>
+                        </a>
+                        <a href="./Salary.html" class="nav-link" data-page="salary">
+                            <div class="text-wrapper-8">Salary</div>
+                        </a>
+                        <a href="./reviews.html" class="nav-link" data-page="reviews">
+                            <div class="text-wrapper-8">Reviews</div>
+                        </a>
+                    </div>
+                    <div class="frame-9"></div>
+                    <div class="overlap-group">
+                        <div class="frame-10">
+                            <div class="frame-11">
+                                <img class="img-2" src="https://c.animaapp.com/mbjppe18jlF2N4/img/solar-settings-bold.svg" />
+                            </div>
+                            <div class="frame-11">
+                                <img class="img-2" src="https://c.animaapp.com/mbjppe18jlF2N4/img/mi-notification.svg" />
+                            </div>
+                        </div>
+                        <div class="frame-12">
+                            <div class="text-wrapper-5">4</div>
+                        </div>
+                    </div>
+                    <img class="line" src="https://c.animaapp.com/mbjppe18jlF2N4/img/line-59.svg" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'dashboard';
+
+            navLinks.forEach(link => {
+                const page = link.getAttribute('data-page');
+                if (page === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    showRipple(this);
+                });
+            });
+
+            function showRipple(element) {
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.6);
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                element.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            const datePicker = document.querySelector('.frame-wrapper');
+            if (datePicker) {
+                datePicker.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                    
+                    const currentDate = new Date();
+                    const options = { 
+                        weekday: 'short', 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                    };
+                    showNotification('Date: ' + currentDate.toLocaleDateString('en-US', options));
+                });
+            }
+
+            const filterBtn = document.querySelector('.frame-7');
+            if (filterBtn) {
+                filterBtn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                    showNotification('Filter options opening...');
+                });
+            }
+
+            const settingsButtons = document.querySelectorAll('.frame-11');
+            settingsButtons.forEach((btn, index) => {
+                btn.addEventListener('click', function() {
+                    this.style.transform = 'rotate(360deg) scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = 'rotate(0deg) scale(1)';
+                    }, 600);
+                    
+                    if (index === 0) {
+                        showNotification('Settings panel opening...');
+                    } else {
+                        showNotification('4 new notifications');
+                    }
+                });
+            });
+
+            const cards = document.querySelectorAll('.dashboard-card, .frame-6, .sales-analytics');
+            cards.forEach((card, index) => {
+                card.addEventListener('click', function() {
+                    const cardNames = ['Analytics Overview', 'Performance Metrics', 'Recent Activity', 'Statistics Panel', 'Sales Analytics'];
+                    showNotification(`${cardNames[index] || 'Card'} - Opening detailed view...`);
+                });
+            });
+
+            const profileAvatar = document.querySelector('.frame-9');
+            if (profileAvatar) {
+                profileAvatar.addEventListener('click', function() {
+                    showNotification('Profile menu opening...');
+                });
+            }
+
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 200px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #31aef3, #1163c1);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    font-family: "Gilroy-Medium", Helvetica;
+                    font-size: 14px;
+                    z-index: 10000;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                    transform: translateX(400px);
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                `;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+                
+                notification.addEventListener('click', () => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.altKey) {
+                    const keyMap = {
+                        '1': './dashboard.html',
+                        '2': './people.html',
+                        '3': './hiring.html',
+                        '4': './salary.html',
+                        '5': './reviews.html'
+                    };
+                    if (keyMap[e.key]) {
+                        window.location.href = keyMap[e.key];
+                    }
+                }
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.dashboard-card, .frame-6, .sales-analytics').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

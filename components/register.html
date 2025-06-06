@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .GIGFLOWW-sign-up {
+        background-color: rgba(255, 255, 255, 1.0);
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .GIGFLOWW-sign-up .div {
+        background: linear-gradient(
+          153deg,
+          rgba(251, 251, 251, 1) 0%,
+          rgba(24, 81, 112, 1) 100%
+        );
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .GIGFLOWW-sign-up .frame {
+        width: 50%;
+        height: 100vh;
+        background-image: url(https://c.animaapp.com/mbkm0ipyc5c12F/img/frame-1171275439.svg);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .GIGFLOWW-sign-up .right-section {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 40px;
+        position: relative;
+        overflow-y: auto;
+        max-height: 100vh;
+      }
+
+      .GIGFLOWW-sign-up .frame-2 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 364px;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 20px;
+      }
+
+      .GIGFLOWW-sign-up .group {
+        width: 200px;
+        height: 40px;
+        background-image: url(https://c.animaapp.com/mbkm0ipyc5c12F/img/image-75.png);
+        background-size: 100% 100%;
+      }
+
+      .GIGFLOWW-sign-up .text-wrapper {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 500;
+        color: #000000;
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: 0.24px;
+        line-height: 32px;
+      }
+
+      .GIGFLOWW-sign-up .frame-3 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 364px;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 25px;
+      }
+
+      .GIGFLOWW-sign-up .text-wrapper-2 {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 600;
+        color: #242831;
+        font-size: 28px;
+        text-align: center;
+        letter-spacing: 0.32px;
+        line-height: 36px;
+      }
+
+      .GIGFLOWW-sign-up .p {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 400;
+        color: #393939;
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 0.20px;
+        line-height: 20px;
+      }
+
+      .GIGFLOWW-sign-up .frame-4 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .GIGFLOWW-sign-up .frame-5 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        width: 100%;
+      }
+
+      .GIGFLOWW-sign-up .text-wrapper-3 {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 500;
+        color: #242831;
+        font-size: 14px;
+        letter-spacing: 0.40px;
+        line-height: 20px;
+      }
+
+      .GIGFLOWW-sign-up .div-wrapper {
+        width: 100%;
+        height: 45px;
+        background-color: #ffffff;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .GIGFLOWW-sign-up .div-wrapper:focus-within {
+        border-color: #2784b8;
+        box-shadow: 0 0 0 3px rgba(39, 132, 184, 0.1);
+      }
+
+      .GIGFLOWW-sign-up .div-wrapper.error {
+        border-color: #dc3545;
+      }
+
+      .GIGFLOWW-sign-up .input-field {
+        position: absolute;
+        top: 50%;
+        left: 18px;
+        right: 18px;
+        transform: translateY(-50%);
+        font-family: "Montserrat", Helvetica;
+        font-weight: 400;
+        color: #393939;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: normal;
+        border: none;
+        outline: none;
+        background: transparent;
+        width: calc(100% - 36px);
+      }
+
+      .GIGFLOWW-sign-up .input-field::placeholder {
+        color: #999;
+      }
+
+      .GIGFLOWW-sign-up .password-wrapper {
+        position: relative;
+      }
+
+      .GIGFLOWW-sign-up .password-toggle {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: #666;
+        padding: 0;
+        z-index: 1;
+      }
+
+      .GIGFLOWW-sign-up .password-toggle:hover {
+        color: #2784b8;
+      }
+
+      .GIGFLOWW-sign-up .error-message {
+        font-family: "Montserrat", Helvetica;
+        font-size: 11px;
+        color: #dc3545;
+        margin-top: 2px;
+        display: none;
+      }
+
+      .GIGFLOWW-sign-up .error-message.show {
+        display: block;
+      }
+
+      .GIGFLOWW-sign-up .frame-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .GIGFLOWW-sign-up .frame-6 {
+        width: 100%;
+        max-width: 400px;
+        height: 45px;
+        border-radius: 22px;
+        overflow: hidden;
+        border: none;
+        background: linear-gradient(135deg, #2784b8 0%, #1a5a7a 100%);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 15px rgba(39, 132, 184, 0.3);
+      }
+
+      .GIGFLOWW-sign-up .frame-6:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(39, 132, 184, 0.4);
+      }
+
+      .GIGFLOWW-sign-up .frame-6:active {
+        transform: translateY(0);
+      }
+
+      .GIGFLOWW-sign-up .frame-6.loading {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .GIGFLOWW-sign-up .text-wrapper-6 {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 600;
+        color: #ffffff;
+        font-size: 15px;
+        text-align: center;
+        letter-spacing: 0;
+        line-height: normal;
+      }
+
+      .GIGFLOWW-sign-up .frame-7 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 400px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .GIGFLOWW-sign-up .frame-8,
+      .GIGFLOWW-sign-up .frame-10 {
+        flex: 1;
+        min-width: 180px;
+        height: 40px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .GIGFLOWW-sign-up .frame-8:hover,
+      .GIGFLOWW-sign-up .frame-10:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      .GIGFLOWW-sign-up .frame-9,
+      .GIGFLOWW-sign-up .frame-11 {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        justify-content: center;
+      }
+
+      .GIGFLOWW-sign-up .google {
+        width: 18px;
+        height: 18px;
+      }
+
+      .GIGFLOWW-sign-up .apple {
+        width: 18px;
+        height: 18px;
+      }
+
+      .GIGFLOWW-sign-up .div-2 {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 500;
+        color: #393939;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: normal;
+      }
+
+      .GIGFLOWW-sign-up .span {
+        color: #666;
+        font-weight: 400;
+      }
+
+      .GIGFLOWW-sign-up .text-wrapper-7 {
+        font-weight: 600;
+        color: #1d1d1d;
+      }
+
+      .GIGFLOWW-sign-up .login-link {
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .GIGFLOWW-sign-up .login-text {
+        font-family: "Montserrat", Helvetica;
+        font-weight: 400;
+        color: #666;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: normal;
+      }
+
+      .GIGFLOWW-sign-up .login-link-text {
+        color: #2784b8;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .GIGFLOWW-sign-up .login-link-text:hover {
+        color: #1a5a7a;
+        text-decoration: underline;
+      }
+
+      .success-message {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-family: "Montserrat", Helvetica;
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        z-index: 1000;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+      }
+
+      .success-message.show {
+        transform: translateX(0);
+      }
+
+      .loading-spinner {
+        display: none;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #ffffff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 8px;
+      }
+
+      .loading-spinner.show {
+        display: inline-block;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Laptop and desktop responsiveness */
+      @media (max-width: 1366px) {
+        .GIGFLOWW-sign-up .right-section {
+          padding: 15px 30px;
+        }
+        
+        .GIGFLOWW-sign-up .text-wrapper-2 {
+          font-size: 26px;
+        }
+        
+        .GIGFLOWW-sign-up .text-wrapper {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .GIGFLOWW-sign-up .div {
+          flex-direction: column;
+        }
+        
+        .GIGFLOWW-sign-up .frame {
+          width: 100%;
+          height: 35vh;
+          min-height: 250px;
+        }
+        
+        .GIGFLOWW-sign-up .right-section {
+          width: 100%;
+          height: 65vh;
+          padding: 20px;
+          overflow-y: auto;
+        }
+        
+        .GIGFLOWW-sign-up .frame-2 {
+          margin-bottom: 15px;
+        }
+        
+        .GIGFLOWW-sign-up .frame-3 {
+          margin-bottom: 20px;
+        }
+        
+        .GIGFLOWW-sign-up .frame-4 {
+          margin-bottom: 15px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .GIGFLOWW-sign-up .frame {
+          height: 30vh;
+          min-height: 200px;
+        }
+        
+        .GIGFLOWW-sign-up .right-section {
+          height: 70vh;
+          padding: 15px;
+        }
+        
+        .GIGFLOWW-sign-up .text-wrapper-2 {
+          font-size: 24px;
+        }
+        
+        .GIGFLOWW-sign-up .text-wrapper {
+          font-size: 16px;
+        }
+        
+        .GIGFLOWW-sign-up .frame-7 {
+          flex-direction: column;
+          gap: 8px;
+        }
+        
+        .GIGFLOWW-sign-up .frame-8,
+        .GIGFLOWW-sign-up .frame-10 {
+          width: 100%;
+          min-width: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .GIGFLOWW-sign-up .frame {
+          height: 25vh;
+          min-height: 180px;
+        }
+        
+        .GIGFLOWW-sign-up .right-section {
+          height: 75vh;
+          padding: 10px;
+        }
+        
+        .GIGFLOWW-sign-up .frame-2,
+        .GIGFLOWW-sign-up .frame-3 {
+          margin-bottom: 12px;
+        }
+        
+        .GIGFLOWW-sign-up .text-wrapper-2 {
+          font-size: 22px;
+        }
+        
+        .GIGFLOWW-sign-up .text-wrapper {
+          font-size: 15px;
+        }
+        
+        .GIGFLOWW-sign-up .group {
+          width: 160px;
+          height: 32px;
+        }
+        
+        .GIGFLOWW-sign-up .frame-4 {
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="GIGFLOWW-sign-up">
+      <div class="div">
+        <div class="frame"></div>
+        <div class="right-section">
+          <div class="frame-2">
+            <div class="group"></div>
+            <div class="text-wrapper">Welcome to Gigfloww</div>
+          </div>
+          <div class="frame-3">
+            <div class="text-wrapper-2">Register</div>
+            <p class="p">Seamless HR operations start now! Sign up</p>
+          </div>
+          <form id="registrationForm" class="frame-4">
+            <div class="frame-5">
+              <div class="text-wrapper-3">Name</div>
+              <div class="div-wrapper" id="nameWrapper">
+                <input type="text" class="input-field" id="nameInput" placeholder="Your name" />
+              </div>
+              <div class="error-message" id="nameError"></div>
+            </div>
+            
+            <div class="frame-5">
+              <div class="text-wrapper-3">Email Address</div>
+              <div class="div-wrapper" id="emailWrapper">
+                <input type="email" class="input-field" id="emailInput" placeholder="Your email" />
+              </div>
+              <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div class="frame-wrapper">
+              <div class="frame-5">
+                <div class="text-wrapper-3">Password</div>
+                <div class="div-wrapper password-wrapper" id="passwordWrapper">
+                  <input type="password" class="input-field" id="passwordInput" placeholder="Your password" />
+                  <button type="button" class="password-toggle" id="passwordToggle">👁️</button>
+                </div>
+                <div class="error-message" id="passwordError"></div>
+              </div>
+            </div>
+            
+            <div class="frame-5">
+              <div class="text-wrapper-3">Confirm Password</div>
+              <div class="div-wrapper password-wrapper" id="confirmPasswordWrapper">
+                <input type="password" class="input-field" id="confirmPasswordInput" placeholder="Re confirm your password" />
+                <button type="button" class="password-toggle" id="confirmPasswordToggle">👁️</button>
+              </div>
+              <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+          </form>
+          
+          <div class="frame-6" id="registerBtn">
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <div class="text-wrapper-6" id="registerText">Register</div>
+          </div>
+          
+          <div class="login-link">
+            <p class="login-text">Already on Gigfloww? <span class="login-link-text">Log in</span></p>
+          </div>
+          
+          <div class="frame-7">
+            <div class="frame-8" id="googleBtn">
+              <div class="frame-9">
+                <img class="google" src="https://c.animaapp.com/mbkm0ipyc5c12F/img/google-1.svg" />
+                <p class="div-2"><span class="span">Register with </span><span class="text-wrapper-7">Google</span></p>
+              </div>
+            </div>
+            <div class="frame-10" id="appleBtn">
+              <div class="frame-11">
+                <img class="apple" src="https://c.animaapp.com/mbkm0ipyc5c12F/img/apple--1--1.svg" />
+                <p class="div-2"><span class="span">Register with </span><span class="text-wrapper-7">Apple</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="success-message" id="successMessage">
+      Registration successful! Welcome to Gigfloww! 🎉
+    </div>
+
+    <script>
+      const form = document.getElementById('registrationForm');
+      const nameInput = document.getElementById('nameInput');
+      const emailInput = document.getElementById('emailInput');
+      const passwordInput = document.getElementById('passwordInput');
+      const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+      const registerBtn = document.getElementById('registerBtn');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const registerText = document.getElementById('registerText');
+      const successMessage = document.getElementById('successMessage');
+      const passwordToggle = document.getElementById('passwordToggle');
+      const confirmPasswordToggle = document.getElementById('confirmPasswordToggle');
+      const googleBtn = document.getElementById('googleBtn');
+      const appleBtn = document.getElementById('appleBtn');
+
+      function validateName(name) {
+        if (!name.trim()) return 'Name is required';
+        if (name.trim().length < 2) return 'Name must be at least 2 characters';
+        return null;
+      }
+
+      function validateEmail(email) {
+        if (!email.trim()) return 'Email is required';
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) return 'Please enter a valid email address';
+        return null;
+      }
+
+      function validatePassword(password) {
+        if (!password) return 'Password is required';
+        if (password.length < 8) return 'Password must be at least 8 characters';
+        if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
+          return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+        }
+        return null;
+      }
+
+      function validateConfirmPassword(password, confirmPassword) {
+        if (!confirmPassword) return 'Please confirm your password';
+        if (password !== confirmPassword) return 'Passwords do not match';
+        return null;
+      }
+
+      function showError(fieldId, message) {
+        const errorElement = document.getElementById(fieldId + 'Error');
+        const wrapperElement = document.getElementById(fieldId + 'Wrapper');
+        
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+        wrapperElement.classList.add('error');
+      }
+
+      function clearError(fieldId) {
+        const errorElement = document.getElementById(fieldId + 'Error');
+        const wrapperElement = document.getElementById(fieldId + 'Wrapper');
+        
+        errorElement.classList.remove('show');
+        wrapperElement.classList.remove('error');
+      }
+
+      nameInput.addEventListener('input', function() {
+        clearError('name');
+        const error = validateName(this.value);
+        if (error && this.value) showError('name', error);
+      });
+
+      emailInput.addEventListener('input', function() {
+        clearError('email');
+        const error = validateEmail(this.value);
+        if (error && this.value) showError('email', error);
+      });
+
+      passwordInput.addEventListener('input', function() {
+        clearError('password');
+        const error = validatePassword(this.value);
+        if (error && this.value) showError('password', error);
+        
+        if (confirmPasswordInput.value) {
+          clearError('confirmPassword');
+          const confirmError = validateConfirmPassword(this.value, confirmPasswordInput.value);
+          if (confirmError) showError('confirmPassword', confirmError);
+        }
+      });
+
+      confirmPasswordInput.addEventListener('input', function() {
+        clearError('confirmPassword');
+        const error = validateConfirmPassword(passwordInput.value, this.value);
+        if (error && this.value) showError('confirmPassword', error);
+      });
+
+      passwordToggle.addEventListener('click', function() {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+      });
+
+      confirmPasswordToggle.addEventListener('click', function() {
+        const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+        confirmPasswordInput.type = type;
+        this.textContent = type === 'password' ? '👁️' : '🙈';
+      });
+
+      registerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        clearError('name');
+        clearError('email');
+        clearError('password');
+        clearError('confirmPassword');
+
+        const nameError = validateName(nameInput.value);
+        const emailError = validateEmail(emailInput.value);
+        const passwordError = validatePassword(passwordInput.value);
+        const confirmPasswordError = validateConfirmPassword(passwordInput.value, confirmPasswordInput.value);
+
+        let hasErrors = false;
+
+        if (nameError) {
+          showError('name', nameError);
+          hasErrors = true;
+        }
+        if (emailError) {
+          showError('email', emailError);
+          hasErrors = true;
+        }
+        if (passwordError) {
+          showError('password', passwordError);
+          hasErrors = true;
+        }
+        if (confirmPasswordError) {
+          showError('confirmPassword', confirmPasswordError);
+          hasErrors = true;
+        }
+
+        if (hasErrors) return;
+
+        this.classList.add('loading');
+        loadingSpinner.classList.add('show');
+        registerText.textContent = 'Registering...';
+
+        setTimeout(() => {
+          this.classList.remove('loading');
+          loadingSpinner.classList.remove('show');
+          registerText.textContent = 'Register';
+          
+          successMessage.classList.add('show');
+          
+          form.reset();
+          
+          // Redirect to dashboard after 2 seconds
+          setTimeout(() => {
+            window.location.href = './daashboard.html';
+          }, 2000);
+          
+        }, 2000);
+      });
+
+      googleBtn.addEventListener('click', function() {
+        alert('Google registration would redirect to Google OAuth flow');
+      });
+
+      appleBtn.addEventListener('click', function() {
+        alert('Apple registration would redirect to Apple Sign-In flow');
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        registerBtn.click();
+      });
+
+      // Redirect to login page when login link is clicked
+      document.querySelector('.login-link-text').addEventListener('click', function() {
+        window.location.href = 'login.html';
+      });
+    </script>
+  </body>
+</html>
